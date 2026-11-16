@@ -1,0 +1,7 @@
+# Core dependencies
+numpy
+opencv-python
+pyyaml
+
+# Testing & Development
+pytest
