@@ -218,3 +218,8 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Bilder Ignorieren (Datenschutz)
+sample_images/*
+!sample_images/.gitkeep
+
