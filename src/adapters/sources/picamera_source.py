@@ -1,9 +1,12 @@
 from src.ports.image_source import ImageSource
 from typing import Optional, Any
 try:
-    from picam2 import Picamera2
+    from picamera2 import Picamera2
 except ImportError:
-    Picamera2 = None
+    try:
+        from picam2 import Picamera2
+    except ImportError:
+        Picamera2 = None
 
 
 class PicameraSource(ImageSource):
