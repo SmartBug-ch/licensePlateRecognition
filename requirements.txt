@@ -2,6 +2,7 @@
 numpy
 opencv-python
 pyyaml
+pytesseract
 
 # Testing & Development
 pytest

@@ -1,0 +1,11 @@
+source:
+  type: picam
+  path: None
+detector:
+  type: opencv
+ocr:
+  type: tesseract
+sinks:
+  - console
+  - csv
+    

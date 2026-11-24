@@ -14,7 +14,7 @@ def test_folder_gives_image_back_from_source():
     frame_two = test_folder_source.get_next_frame()
 
     assert frame is not None
-    assert frame_two == None
+    assert frame_two is None
 
 
 

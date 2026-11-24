@@ -223,3 +223,7 @@ __marimo__/
 sample_images/*
 !sample_images/.gitkeep
 
+
+# Output files
+plates.csv
+*.csv

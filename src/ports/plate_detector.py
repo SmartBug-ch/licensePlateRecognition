@@ -10,7 +10,3 @@ class PlateDetector(ABC):
         """
             detect function, can return empty list []
         """
-
-
-    
-
