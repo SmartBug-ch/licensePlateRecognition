@@ -2,7 +2,7 @@ source:
   type: picam
   path: None
 detector:
-  type: opencv
+  type: yolo
 ocr:
   type: tesseract
 sinks:

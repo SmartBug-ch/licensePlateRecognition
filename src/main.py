@@ -1,5 +1,4 @@
 import yaml
-from typing import Any, Optional
 from src.adapters.sources.folder_source import FolderSource
 from src.adapters.sinks.console_sink import ConsoleSink
 from src.adapters.sinks.csv_sink import CsvSink
@@ -7,6 +6,7 @@ from src.adapters.detectors.opencv_detector import OpencvDetector
 from src.adapters.ocr.tesseract_ocr import TesseractOcr
 from src.application.pipeline import Pipeline
 from src.adapters.sources.picamera_source import PicameraSource
+from src.adapters.detectors.yolo_detector import YoloDetector
 
 def main():
 
@@ -40,7 +40,7 @@ def get_sinks(config):
 def get_detector(config):
     detector = config["detector"]["type"]
     if detector == "opencv": return OpencvDetector()
-    if detector == "yolo": return NotImplemented
+    if detector == "yolo": return YoloDetector()
 
 def get_ocr(config):
     ocr = config["ocr"]["type"]
