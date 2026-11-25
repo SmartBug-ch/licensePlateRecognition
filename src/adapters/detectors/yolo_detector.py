@@ -4,7 +4,7 @@ from src.domain.models import BoundingBox, PlateDetection
 
 
 class YoloDetector(PlateDetector):
-    def __init__(self, model_path: str = "model/license_plate_detector.onnx", confidence_threshold: float = 0.4):
+    def __init__(self, model_path: str = "models/license_plate_detector.onnx", confidence_threshold: float = 0.4):
         self.model_path = model_path
         self.net = cv2.dnn.readNetFromONNX(self.model_path)
         self.confidence_threshold = confidence_threshold
@@ -44,11 +44,3 @@ class YoloDetector(PlateDetector):
             detections.append(PlateDetection(bbox=bbox, confidence=confidences[i], cropped_image=cropped))
 
         return detections
-
-     
-
-
-        
-
-
-    
