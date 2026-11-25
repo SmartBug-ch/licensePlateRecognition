@@ -1,25 +1,37 @@
 from src.ports.plate_detector import PlateDetector
 import cv2
 from src.domain.models import BoundingBox, PlateDetection
+import onnxruntime as ort
+import numpy as np
 
 
 class YoloDetector(PlateDetector):
     def __init__(self, model_path: str = "models/license_plate_detector.onnx", confidence_threshold: float = 0.4):
         self.model_path = model_path
-        self.net = cv2.dnn.readNetFromONNX(self.model_path)
         self.confidence_threshold = confidence_threshold
+        self.session = ort.InferenceSession(self.model_path, providers=["CPUExecutionProvider"])
+        self.input_name = self.session.get_inputs()[0].name
 
     def detect(self, frame):
-        blob = cv2.dnn.blobFromImage(frame, 1/255.0, (640, 640), swapRB=True, crop=False)
-        self.net.setInput(blob)
-        outputs = self.net.forward()
+
+        if frame is None: return []
+
+        orig_h, orig_w = frame.shape[:2]
+
+        image = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+        image = cv2.resize(image, (640, 640))
+        image = image.astype(np.float32) / 255.0
+        image = np.transpose(image, (2, 0, 1))   
+        image = np.expand_dims(image, axis=0)
+
+        outputs = self.session.run(None, {self.input_name: image})
+        preds = outputs[0][0].T
 
         preds = outputs[0]
         preds = preds.T
 
         boxes, confidences = [], []
-        orig_h, orig_w = frame.shape[:2]
-
+        
         for row in preds:
             confidence = row[4]
             if confidence < self.confidence_threshold:
