@@ -6,7 +6,7 @@ import numpy as np
 
 
 class YoloDetector(PlateDetector):
-    def __init__(self, model_path: str = "models/license_plate_detector.onnx", confidence_threshold: float = 0.4):
+    def __init__(self, model_path: str = "models/best.onnx", confidence_threshold: float = 0.4):
         self.model_path = model_path
         self.confidence_threshold = confidence_threshold
         self.session = ort.InferenceSession(self.model_path, providers=["CPUExecutionProvider"])
