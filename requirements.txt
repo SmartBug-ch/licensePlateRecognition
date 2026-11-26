@@ -3,6 +3,8 @@ numpy
 opencv-python
 pyyaml
 pytesseract
+onnxruntime
+rapidocr-onnxruntime
 
 # Testing & Development
 pytest

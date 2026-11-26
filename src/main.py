@@ -7,6 +7,7 @@ from src.adapters.ocr.tesseract_ocr import TesseractOcr
 from src.application.pipeline import Pipeline
 from src.adapters.sources.picamera_source import PicameraSource
 from src.adapters.detectors.yolo_detector import YoloDetector
+from src.adapters.ocr.rapid_ocr import RapidOcr
 
 def main():
 
@@ -46,6 +47,7 @@ def get_ocr(config):
     ocr = config["ocr"]["type"]
     if ocr == "tesseract": return TesseractOcr()
     if ocr == "opencv": return NotImplemented
+    if ocr == "rapidocr": return RapidOcr()
 
 if __name__ == "__main__":
     main()
